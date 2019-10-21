@@ -3,7 +3,7 @@ pipeline {
          agent any
 
          tools {
-         maven 'Maven 3.6'
+         maven 'Maven 3.6.2'
          jdk 'JDK11'
          }
 
@@ -13,7 +13,7 @@ pipeline {
 
                  steps {
 
-                   mvn compile
+                   sh 'mvn compile'
 
                  }
 
@@ -23,11 +23,11 @@ pipeline {
 
                  steps {
 
-                   mvn resources: testResources
+                   sh 'mvn resources: testResources'
 
-                   mvn compiler: testCompile
+                   sh 'mvn compiler: testCompile'
 
-                   mvn surefire: test
+                   sh 'mvn surefire: test'
 
                  }
 
