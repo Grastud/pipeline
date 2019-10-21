@@ -2,47 +2,37 @@ pipeline {
 
          agent any
 
+         tools {
+         maven 'Maven 3.6'
+         jdk 'JDK11'
+         }
+
          stages {
 
-                 stage('One') {
+                 stage('Compile') {
 
                  steps {
 
-                     echo 'Hi, this is Zulaikha from edureka'
+                   mvn compile
 
                  }
 
                  }
 
-                 stage('Two') {
+                 stage('Unit Test') {
 
                  steps {
 
-                    input('Do you want to proceed?')
+                   mvn resources: testResources
+
+                   mvn compiler: testCompile
+
+                   mvn surefire: test
 
                  }
 
                  }
 
-                 stage('Three') {
-
-                 when {
-
-                       not {
-
-                            branch "master"
-
-                       }
-
-                 }
-
-                 steps {
-
-                       echo "Hello"
-
-                 }
-
-                 }
 
                  stage('Four') {
 
