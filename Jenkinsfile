@@ -21,18 +21,18 @@ pipeline {
                  steps {
 
                    sh 'mvn resources:testResources'
-
                    sh 'mvn compiler:testCompile'
-
                    sh 'mvn surefire:test'
 
                  }
                  }
 
-                  stage('Build') {
+                  stage('Integration Test') {
                   steps {
 
-                    sh 'mvn verify'
+                    sh 'mvn pre-integration-test'
+                    sh 'mvn integration-test'
+                    sh 'mvn post-integration-test'
                   }
                   }
 
