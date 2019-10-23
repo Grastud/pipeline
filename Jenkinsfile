@@ -12,7 +12,7 @@ pipeline {
                 stage('Compile') {
                 steps {
 
-                   sh 'mvn compile'
+                   sh 'mvn compiler:compile'
                            }
                            }
 
@@ -20,7 +20,11 @@ pipeline {
                  stage('Unit Test') {
                  steps {
 
-                    sh 'mvn test'
+                   sh 'mvn resources:testResources'
+
+                   sh 'mvn compiler:testCompile'
+
+                   sh 'mvn surefire:test'
 
                  }
                  }
