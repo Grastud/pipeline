@@ -9,18 +9,15 @@ pipeline {
 
          stages {
 
-                 stage('Compile') {
-
-                 steps {
+                stage('Compile') {
+                steps {
 
                    sh 'mvn compile'
-
+                 }
                  }
 
-                 }
 
                  stage('Unit Test') {
-
                  steps {
 
                    sh 'mvn resources:testResources'
@@ -30,8 +27,16 @@ pipeline {
                    sh 'mvn surefire:test'
 
                  }
-
                  }
+
+                  stage('Build') {
+                  steps {
+
+                    sh 'mvn verify'
+                  }
+                  }
+
+
          }
 
   }
